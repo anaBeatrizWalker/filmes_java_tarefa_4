@@ -2,10 +2,9 @@ package br.fatec.filmes.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
 
 @Entity
 public class Filme extends AbstractEntity {
@@ -13,8 +12,7 @@ public class Filme extends AbstractEntity {
 	private String titulo;
 	private Integer ano;
 	
-	@ManyToMany
-	@JoinTable(name = "filme_ator", joinColumns=@JoinColumn(name="fk_filme_id"), inverseJoinColumns = @JoinColumn(name="fk_ator_id"))
+	@ManyToMany(cascade = {CascadeType.ALL})
 	private List<Ator> ator;
 	
 	public Filme () {}
